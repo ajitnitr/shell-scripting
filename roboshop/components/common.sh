@@ -27,16 +27,16 @@ set-hostname -skip-apply ${COMPONENT}
 
 SYSTEMD_SETUP() {
   chown roboshop:roboshop -R /home/roboshop
-  sed -i  -e 's/MONGO_DNSNAME/mongod.roboshop.internal/' \
-          -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' \
-          -e 's/MONGO_ENDPOINT/mongod.roboshop.internal/' \
-          -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' \
-          -e 's/CARTENDPOINT/cart.roboshop.internal/' \
-          -e 's/DBHOST/mysql.roboshop.internal/' \
-          -e 's/CARTHOST/cart.roboshop.internal/' \
-          -e 's/USERHOST/user.roboshop.internal/' \
-          -e 's/AMQPHOST/rabbitmq.roboshop.internal/' \
-          -e 's/RABBITMQ-IP/rabbitmq.roboshop.internal/' /home/roboshop/${component}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service  &>>${LOG_FILE}
+  sed -i  -e 's/MONGO_DNSNAME/mongod.ajitdevops-internal/' \
+          -e 's/REDIS_ENDPOINT/redis.ajitdevops-internal/' \
+          -e 's/MONGO_ENDPOINT/mongod.ajitdevops-internal/' \
+          -e 's/CATALOGUE_ENDPOINT/catalogue.ajitdevops-internal/' \
+          -e 's/CARTENDPOINT/cart.ajitdevops-internal/' \
+          -e 's/DBHOST/mysql.ajitdevops-internal/' \
+          -e 's/CARTHOST/cart.ajitdevops-internal/' \
+          -e 's/USERHOST/user.ajitdevops-internal/' \
+          -e 's/AMQPHOST/rabbitmq.ajitdevops-internal/' \
+          -e 's/RABBITMQ-IP/rabbitmq.ajitdevops-internal/' /home/roboshop/${component}/systemd.service &>>${LOG_FILE} && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service  &>>${LOG_FILE}
   STAT_CHECK $? "Update SystemD Config file"
 
   systemctl daemon-reload &>>${LOG_FILE} && systemctl restart ${component} &>>${LOG_FILE} && systemctl enable ${component} &>>${LOG_FILE}
